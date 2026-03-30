@@ -28,6 +28,9 @@ public class BinarySearchTree<E extends Comparable<E>> {
                 }
             }
             //Write one more compareTo statement to determine the new node placement!!!!
+            if (value.compareTo(temp.getValue()) <= 0){
+                temp.setLeftChild();//Start Here!!!!
+            }
         }
     }
 
