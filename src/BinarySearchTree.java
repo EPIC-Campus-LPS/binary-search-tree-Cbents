@@ -41,6 +41,23 @@ public class BinarySearchTree<E extends Comparable<E>> {
     }
 
     public boolean contains(E value){
+
+        TreeNode<E> temp = root;
+        while (true){
+            if (temp.getLeftChild() == null && temp.getRightChild() == null){
+                break;
+            }
+            else if(value.compareTo(temp.getValue()) < 0){
+                temp = temp.getLeftChild();
+            }
+            else if(value.compareTo(temp.getValue()) == 0){
+                return true;
+            }
+            else if (value.compareTo(temp.getValue()) > 0){
+                temp = temp.getRightChild();
+            }
+        }
+
         return false;
     }
 
@@ -49,7 +66,21 @@ public class BinarySearchTree<E extends Comparable<E>> {
     }
 
     public int countLeafNodes(){
-
+        TreeNode<E> temp = root;
+        while (true){
+            if (temp.getLeftChild() == null && temp.getRightChild() == null){
+                break;
+            }
+            else if(value.compareTo(temp.getValue()) < 0){
+                temp = temp.getLeftChild();
+            }
+            else if(value.compareTo(temp.getValue()) == 0){
+                return true;
+            }
+            else if (value.compareTo(temp.getValue()) > 0){
+                temp = temp.getRightChild();
+            }
+        }
     }
     public int getHeight(){
 
