@@ -1,4 +1,5 @@
 public class BinarySearchTree<E extends Comparable<E>> {
+    int numNode = 0;
     public TreeNode<E> root;
 
     public TreeNode<E> getRoot() {
@@ -13,6 +14,7 @@ public class BinarySearchTree<E extends Comparable<E>> {
     public void add(E value){
         if (getRoot() == null){
             root = new TreeNode<>(value, null, null);
+            numNode ++;
         }
         else{
             TreeNode<E> temp = root;
@@ -27,13 +29,14 @@ public class BinarySearchTree<E extends Comparable<E>> {
                     temp = temp.getRightChild();
                 }
             }
-            //Write one more compareTo statement to determine the new node placement!!!!
+
             if (value.compareTo(temp.getValue()) <= 0){
                 temp.setLeftChild(new TreeNode<>(value, null, null));
             }
             else{
                 temp.setRightChild(new TreeNode<>(value, null, null));
             }
+            numNode++;
         }
     }
 
@@ -42,7 +45,7 @@ public class BinarySearchTree<E extends Comparable<E>> {
     }
 
     public int countNodes(){
-
+        return numNode;
     }
 
     public int countLeafNodes(){
