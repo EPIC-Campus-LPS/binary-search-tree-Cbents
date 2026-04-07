@@ -19,28 +19,64 @@ public class BinarySearchTree<E extends Comparable<E>> {
         else{
             TreeNode<E> temp = root;
             while (true){
+
+                //Case 1: Nothing except root or temp has no children
                 if (temp.getLeftChild() == null && temp.getRightChild() == null){
+                    if (value.compareTo(temp.getValue()) > 0){
+                        temp.setRightChild(new TreeNode<>(value, null, null));
+                        numNode ++;
+                        break;
+                    }
+                    else if (value.compareTo(temp.getValue()) <= 0){
+                        temp.setLeftChild(new TreeNode<>(value, null, null));
+                        numNode ++;
+                        break;
+                    }
+                }
+
+                //Case 2: Right Child Handling
+                if (value.compareTo(temp.getValue()) > 0 && temp.getRightChild() != null){
+                    temp = temp.getRightChild();
+                    continue;
+                }
+                else if (value.compareTo(temp.getValue()) > 0 && temp.getRightChild() == null){
+                    temp.setRightChild(new TreeNode<>(value, null, null));
+                    numNode++;
                     break;
                 }
-                else if(value.compareTo(temp.getValue()) <= 0){ //Left
+                else if (value.compareTo(temp.getValue()) <= 0 && temp.getLeftChild() != null){
                     temp = temp.getLeftChild();
+                    continue;
                 }
-                else if(value.compareTo(temp.getValue()) > 0){
-                    temp = temp.getRightChild();
+                else if (value.compareTo(temp.getValue()) <= 0 && temp.getLeftChild() == null){
+                    temp.setLeftChild(new TreeNode<>(value, null, null));
+                    numNode++;
+                    break;
                 }
-            }
-
-            if (value.compareTo(temp.getValue()) <= 0){
-                temp.setLeftChild(new TreeNode<>(value, null, null));
-            }
-            else{
-                temp.setRightChild(new TreeNode<>(value, null, null));
-            }
-            numNode++;
+                else{
+                    break;
+                }
+                //The whole thing is a big FUCKING MESSSS
         }
     }
 
     public boolean contains(E value){
+        TreeNode<E> temp = root;
+        while (true){
+            if (temp.getLeftChild() == null && temp.getRightChild() == null){
+                break;
+            }
+            else if(value.compareTo(temp.getValue()) < 0){
+                temp = temp.getLeftChild();
+            }
+            else if (value.compareTo(temp.getValue()) > 0){
+                temp = temp.getRightChild();
+            }
+
+
+
+        }
+
         return false;
     }
 
@@ -69,4 +105,9 @@ public class BinarySearchTree<E extends Comparable<E>> {
     }
 
 
+
+
 }
+
+
+
