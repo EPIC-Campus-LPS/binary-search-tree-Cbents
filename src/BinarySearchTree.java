@@ -104,8 +104,10 @@ public class BinarySearchTree<E extends Comparable<E>> {
         return numNode;
     }
 
-    public int countLeafNodes(){
-        return 0;
+    public int countLeafNodes()
+    {
+        return traverse(root);
+
     }
     public int getHeight(){
         return 0;
@@ -124,6 +126,23 @@ public class BinarySearchTree<E extends Comparable<E>> {
         return value;
     }
 
+    private int traverse(TreeNode<E> node){
+        if (node.getLeftChild() == null && node.getRightChild() == null){
+            return 1;
+        }
+        else if (node.getRightChild() != null && node.getLeftChild() != null){
+            return traverse(node.getLeftChild()) + traverse(node.getRightChild());
+        }
+        else if (node.getRightChild() == null && node.getLeftChild() != null){
+            return traverse(node.getLeftChild());
+        }
+        else if (node.getRightChild() != null && node.getLeftChild() == null){
+            return traverse(node.getRightChild());
+        }
+        else{
+            return 0;
+        }
+    }
 
 
 

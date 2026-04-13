@@ -19,6 +19,8 @@ public class Main {
             throw new RuntimeException(e);
         }
 
+        System.out.println(bst.countLeafNodes());
+
 
     }
 }
