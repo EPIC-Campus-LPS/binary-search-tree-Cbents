@@ -110,17 +110,40 @@ public class BinarySearchTree<E extends Comparable<E>> {
 
     }
     public int getHeight(){
-        return 0;
+
+        return heightS(root);
+
     }
 
     public void printInorder(){
-
+        //Left
+        //print
+        //Right
     }
-    public void printPreorder(){
+    public void printPreorder(TreeNode<E> node){
+        if (node.getLeftChild() == null && node.getRightChild() == null){
+            System.out.println(node.getValue());
+
+        }
+
+
+        else{
+            System.out.println(node.getValue()); // Print
+            if (node.getLeftChild() != null) { // Left Subtree
+                printPreorder(node.getLeftChild());
+            }
+            if (node.getRightChild() != null){ // Right Subtree
+                printPreorder(node.getRightChild());
+            }
+
+        }
+
 
     }
     public void printPostorder(){
-
+        //Left
+        //Right
+        //Print
     }
     public E delete(E value){
         return value;
@@ -143,6 +166,20 @@ public class BinarySearchTree<E extends Comparable<E>> {
             return 0;
         }
     }
+
+
+    private int heightS(TreeNode<E> node) {
+        if (node == null) {
+            return 0;
+        }
+
+        int leftHeight = heightS(node.getLeftChild());
+        int rightHeight = heightS(node.getRightChild());
+
+        return 1 + Math.max(leftHeight, rightHeight);
+    }
+
+
 
 
 
